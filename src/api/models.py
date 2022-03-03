@@ -29,7 +29,6 @@ class Testimonial(models.Model):
     
     class Meta:
         ordering = ["-moderated", "rating", "-date_created"]
-
     
 
     def __str__(self) -> str:
