@@ -18,7 +18,8 @@ COPY Pipfile .
 COPY Pipfile.lock .
 
 # Install the requirements to the container
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --system
+RUN PIPENV_VENV_IN_PROJECT=1 
+RUN . pipenv shell pipenv install --system
 # RUN cd /src && pipenv install --system
 
 FROM base AS runtime
