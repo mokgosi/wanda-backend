@@ -9,31 +9,32 @@ ENV PYTHONUNBUFFERED 1
 
 FROM base AS python-deps
 
-# Install pipenv and compilation dependencies
-RUN pip install pipenv
-RUN apt-get update && apt-get install -y --no-install-recommends gcc
-
 # Copy requirements to the container
-COPY Pipfile .
-COPY Pipfile.lock .
+COPY Pipfile Pipfile.lock ./
+COPY ./src /src
 
-# Install the requirements to the container
-RUN PIPENV_VENV_IN_PROJECT=1 
-RUN . pipenv shell pipenv install --system
-# RUN cd /src && pipenv install --system
+# Install pipenv and compilation dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc && \
+    pip install --upgrade pip && \
+    pip install pipenv && \
+    PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy && \
+    useradd --create-home appuser
 
 FROM base AS runtime
 
+COPY --from=python-deps /.venv /.venv
+ENV PATH="/.venv/bin:$PATH"
+
 # Create and switch to a new user
-RUN useradd --create-home appuser
 WORKDIR /home/appuser
 USER appuser
 
-# Copy the project files into the working directory
+# Install application into container
 COPY . .
-# Open a port on the container
+
 EXPOSE 8000
 
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
+# Run the application
+# ENTRYPOINT ["python", "-m", "http.server"]
+# CMD ["--directory", "directory", "8000"]
