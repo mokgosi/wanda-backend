@@ -11,7 +11,6 @@ FROM base AS python-deps
 
 # Copy requirements to the container
 COPY Pipfile Pipfile.lock ./
-COPY ./src /src
 
 # Install pipenv and compilation dependencies
 RUN apt-get update && \
