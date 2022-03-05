@@ -8,7 +8,7 @@ from .models import Page, Testimonial, Wander
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
-        fields = ['id', 'user', 'body', 'location', 'rating', 'is_deleted']
+        fields = ['id', 'user', 'body', 'location', 'moderated', 'rating', 'is_deleted']
         depth = 1
 
 
