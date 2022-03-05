@@ -7,7 +7,34 @@ from django.utils.text import slugify
 
 
 # Create your models here.
-class Testimonial(models.Model):
+class SoftDeleteManager(models.Manager):
+
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
+
+class SoftDeleteModel(models.Model):
+    
+    is_deleted = models.BooleanField(default=False)
+    deleted_at = models.DateTimeField(null=True, default=None)
+    objects = SoftDeleteManager()
+    all_objects = models.Manager()
+
+    def soft_delete(self):
+        self.is_deleted = True
+        self.deleted_at = timezone.now()
+        self.save()
+
+    def restore(self):
+        self.is_deleted = False
+        self.deleted_at = None
+        self.save()
+
+    class Meta:
+        abstract = True
+
+
+class Testimonial(SoftDeleteModel):
 
     RATING_CHOICES = [
         (1,1),
@@ -22,7 +49,6 @@ class Testimonial(models.Model):
     location = models.CharField(max_length=100,null=True)
     body = RichTextUploadingField(max_length=300) 
     moderated = models.BooleanField(default=False,)
-    # TODO  soft deleted testimonials
     rating = models.PositiveIntegerField(choices=RATING_CHOICES, default=0)
     date_created = models.DateTimeField(auto_now_add=True,)
     date_updated = models.DateTimeField(auto_now=True,)   

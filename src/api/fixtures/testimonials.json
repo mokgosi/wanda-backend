@@ -1,0 +1,73 @@
+[
+    {
+      "model": "api.testimonial",
+      "pk": 1,
+      "fields": {
+        "location": "Afghanistan",
+        "body": "lorem ipsum dolor sat amet",
+        "moderated": 0,
+        "is_deleted": 0,
+        "deleted_at": "2022-03-05 13:53",
+        "user_id": 1,
+        "rating": 3,
+        "date_created": "2022-03-05 13:53",
+        "date_updated": "2022-03-05 13:53"
+      }
+    },{
+        "model": "api.testimonial",
+        "pk": 2,
+        "fields": {
+          "location": "Afghanistan",
+          "body": "lorem ipsum dolor sat amet",
+          "moderated": 0,
+          "is_deleted": 0,
+          "deleted_at": "2022-03-05 13:53",
+          "user_id": 1,
+          "rating": 3,
+          "date_created": "2022-03-05 13:53",
+          "date_updated": "2022-03-05 13:53"
+        }
+      },{
+        "model": "api.testimonial",
+        "pk": 3,
+        "fields": {
+          "location": "Afghanistan",
+          "body": "lorem ipsum dolor sat amet",
+          "moderated": 0,
+          "is_deleted": 0,
+          "deleted_at": "2022-03-05 13:53",
+          "user_id": 1,
+          "rating": 3,
+          "date_created": "2022-03-05 13:53",
+          "date_updated": "2022-03-05 13:53"
+        }
+      },{
+        "model": "api.testimonial",
+        "pk": 4,
+        "fields": {
+          "location": "Afghanistan",
+          "body": "lorem ipsum dolor sat amet",
+          "moderated": 0,
+          "is_deleted": 0,
+          "deleted_at": "2022-03-05 13:53",
+          "user_id": 1,
+          "rating": 3,
+          "date_created": "2022-03-05 13:53",
+          "date_updated": "2022-03-05 13:53"
+        }
+      },{
+        "model": "api.testimonial",
+        "pk": 5,
+        "fields": {
+          "location": "Afghanistan",
+          "body": "lorem ipsum dolor sat amet",
+          "moderated": 0,
+          "is_deleted": 0,
+          "deleted_at": "2022-03-05 13:53",
+          "user_id": 1,
+          "rating": 3,
+          "date_created": "2022-03-05 13:53",
+          "date_updated": "2022-03-05 13:53"
+        }
+      }
+]
