@@ -4,16 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "*"
+django = "*"
 djangorestframework = "*"
 django-tinymce = "*"
 psycopg2-binary = "*"
-django-bona-blog = "*"
+django-extensions = "*"
 django-cors-headers = "*"
 django-dotenv = "*"
+celery = "*"
+redis = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.10.3"
+
+[pipenv]
+allow_prereleases = true

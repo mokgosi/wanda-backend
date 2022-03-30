@@ -4,7 +4,8 @@ from .models import Testimonial, Wander, Page
 
 # Register your models here.
 class TestimonialAdmin(admin.ModelAdmin):
-    list_display = ('body', 'user', 'location', 'date_created', 'moderated')
+    list_display = ('body', 'user', 'location', 'date_created', 'moderated', 'is_deleted')
+    list_filter = ('is_deleted',)
 
 class WanderAdmin(admin.ModelAdmin):
     list_display = ('title', 'video_url', 'date_created')

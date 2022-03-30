@@ -15,10 +15,11 @@ COPY Pipfile Pipfile.lock ./
 # Install pipenv and compilation dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc && \
+    apt-get install -y --no-install-recommends postgresql-client && \
     pip install --upgrade pip && \
     pip install pipenv && \
     PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy && \
-    useradd --create-home appuser
+    useradd --create-home --shell /bin/bash appuser
 
 FROM base AS runtime
 
@@ -26,8 +27,8 @@ COPY --from=python-deps /.venv /.venv
 ENV PATH="/.venv/bin:$PATH"
 
 # Create and switch to a new user
-WORKDIR /home/appuser
 USER appuser
+WORKDIR /home/appuser
 
 # Install application into container
 COPY . .
@@ -35,5 +36,5 @@ COPY . .
 EXPOSE 8000
 
 # Run the application
-# ENTRYPOINT ["python", "-m", "http.server"]
-# CMD ["--directory", "directory", "8000"]
+ENTRYPOINT ["python", "-m", "http.server"]
+CMD ["--directory", "directory", "8000"]
